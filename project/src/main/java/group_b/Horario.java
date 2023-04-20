@@ -52,14 +52,4 @@ public class Horario {
         return jsonFile;
     }
 
-
-public static void main (String[] args) throws IOException, CsvException{
-
-File csvFile = new File("horario_exemplo.csv");
-Conversor a=new Conversor(csvFile);
-a.csvToJson();
-
-
-}
-
 }

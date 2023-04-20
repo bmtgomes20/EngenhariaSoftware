@@ -28,7 +28,7 @@ public class Conversor {
     public static File csvToJson() throws IOException, CsvException {
 
         if(file.getName().endsWith(".csv")){
-            CSVReader reader = new CSVReader(new FileReader(file.getName()));
+            CSVReader reader = new CSVReader(new FileReader(file));
             List<String[]> rows = reader.readAll();
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
