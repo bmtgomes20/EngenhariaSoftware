@@ -6,6 +6,7 @@ import java.util.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.opencsv.CSVWriter;
+import com.opencsv.exceptions.CsvException;
 
 public class Horario {
     
@@ -52,9 +53,11 @@ public class Horario {
     }
 
 
-public static void main (String[] args){
+public static void main (String[] args) throws IOException, CsvException{
 
-Conversor a = new Conversor(File("C:\Users\rodri\Documents\GitHub\EngenhariaSoftware\project\horario_exemplo.csv"));
+File csvFile = new File("horario_exemplo.csv");
+Conversor a=new Conversor(csvFile);
+a.csvToJson();
 
 
 }

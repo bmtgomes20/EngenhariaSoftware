@@ -28,20 +28,20 @@ public class Conversor {
     public static File csvToJson() throws IOException, CsvException {
 
         if(file.getName().endsWith(".csv")){
-            CSVReader reader = new CSVReader(new FileReader(file));
+            CSVReader reader = new CSVReader(new FileReader(file.getName()));
             List<String[]> rows = reader.readAll();
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String json = gson.toJson(rows);
 
             String filename = file.getName().replace(".csv", ".json");
-            File file = new File(filename);
+            File jsonFile = new File(filename);
 
-            FileWriter writer = new FileWriter(file);
+            FileWriter writer = new FileWriter(jsonFile);
             writer.write(json);
             writer.close();
             System.out.println("Ler ofhciei");
-            return file;
+            return jsonFile;
         }
         System.out.println("Tem que ser um ficheiro CSV");
         return null;
@@ -55,17 +55,38 @@ public class Conversor {
             String[][] data = gson.fromJson(new FileReader(file), String[][].class);
 
             String filename = file.getName().replace(".json", ".csv");
-            File file = new File(filename);
+            File csvFile  = new File(filename);
 
-            CSVWriter writer = new CSVWriter(new FileWriter(file));
+            CSVWriter writer = new CSVWriter(new FileWriter(csvFile ));
             String [] primeira= {"Curso","Unidade Curricular","Turno","Turma","Inscritos no turno","Dia da semana","Hora início da aula","Hora fim da aula","Data da aula","Sala atribuída à aula","Lotação da sala\n"};
             writer.writeNext(primeira);
             writer.writeAll(Arrays.asList(data));
             writer.close();
         
-            return file;
+            return csvFile ;
         }
         System.out.println("Tem que ser um ficheiro JSON");
         return null;
     }
+
+    
+        public static void main(String[] args) {
+            // create a file object for the CSV file
+            File csvFile = new File("C:/Users/Rodrigo/Documents/GitHub/EngenhariaSoftware/project/horario_ficheiro.csv");
+            
+            // create a Conversor object with the file
+            Conversor conversor = new Conversor(csvFile);
+            
+            // call csvToJson() method on the Conversor object
+            try {
+                File jsonFile = conversor.csvToJson();
+                if (jsonFile != null) {
+                    System.out.println("JSON file created: " + jsonFile.getAbsolutePath());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (CsvException e) {
+                e.printStackTrace();
+            }
+        }
 }
