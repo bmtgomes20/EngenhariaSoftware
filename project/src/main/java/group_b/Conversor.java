@@ -42,6 +42,7 @@ public class Conversor {
             writer.close();
             return jsonFile;
         }
+        System.out.println("Tem que ser um ficheiro CSV");
         return null;
     }
 
@@ -63,6 +64,7 @@ public class Conversor {
         
             return csvFile;
         }
+        System.out.println("Tem que ser um ficheiro JSON");
         return null;
     }
 }
