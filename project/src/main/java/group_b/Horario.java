@@ -54,7 +54,8 @@ public class Horario {
 
 public static void main (String[] args){
 
-Conversor a = new Conversor(File(C:\Users\rodri\Documents\GitHub\EngenhariaSoftware\project\horario_exemplo.csv));
+Conversor a = new Conversor(File("C:\Users\rodri\Documents\GitHub\EngenhariaSoftware\project\horario_exemplo.csv"));
+
 
 }
 
